@@ -1,0 +1,41 @@
+var express = require('express')
+var cors = require('cors');
+var session = require('express-session')
+
+var app = express()
+var router = express.Router();
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+app.use(express.json())
+app.use(session({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true
+}));
+router.get("/sess_set", (req, res) => {
+    req.session.samit = 'sinha'
+    res.status(200).send({'ok':'ok'})
+})
+router.get("/sess_get", (req, res) => {
+    console.log(req.session)
+    res.send(req.session)
+})
+router.get("/sess_get1", (req, res) => {
+    console.log(req.session)
+    res.send(req.session)
+})
+app.use(router);
+
+app.listen(3000, () => {
+    console.log('...running')
+})
+
+//---------------------------Angular---------------------------
+ setsess(): Observable<any>{
+    const httpoptions = {
+      headers : new HttpHeaders({
+        Credentials : 'same-origin'
+      }),
+      withCredentials: true
+    }
+    return this.http.get<any>(`${this.url}/sess_set`, httpoptions);
+  }
