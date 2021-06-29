@@ -33,7 +33,7 @@ app.listen(3000, () => {
  setsess(): Observable<any>{
     const httpoptions = {
       headers : new HttpHeaders({
-        Credentials : 'same-origin'
+         'Content-Type': 'application/json'
       }),
       withCredentials: true
     }
