@@ -7,9 +7,10 @@ var router = express.Router();
 app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 app.use(express.json())
 app.use(session({
-    secret: 'keyboard cat',
-    resave: true,
-    saveUninitialized: true
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized:true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    resave: false 
 }));
 router.get("/sess_set", (req, res) => {
     req.session.samit = 'sinha'
