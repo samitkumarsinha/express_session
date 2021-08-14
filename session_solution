@@ -14,6 +14,7 @@ app.use(session({
 }));
 router.get("/sess_set", (req, res) => {
     req.session.samit = 'sinha'
+    req.session.save()
     res.status(200).send({'ok':'ok'})
 })
 router.get("/sess_get", (req, res) => {
